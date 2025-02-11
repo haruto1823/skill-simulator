@@ -1,0 +1,141 @@
+body {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    margin: 20px;
+    max-width: 1200px;
+    padding: 0 20px;
+}
+
+h1,
+h2 {
+    color: #333;
+    background-color: rgb(222, 222, 222);
+}
+
+
+select {
+    height: 50px;
+    padding: 25px 5px 5px 5px;
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+    /* ラベルの下に表示 */
+    z-index: 0;
+    /* ラベルより下に表示 */
+}
+
+.head-options {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin: 20px 0;
+}
+
+/* 状態異常耐性セクション（.resistances）を6列で表示する例 */
+.resistances {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 10px;
+    /* 必要に応じて margin など */
+}
+
+/* 各耐性項目（.resistance-item）のスタイル */
+
+.head-item,
+.resistance-item {
+    margin-bottom: 10px;
+    position: relative;
+    /* ラベルを絶対配置する場合の親要素 */
+    width: 100%;
+}
+
+/* ラベル（例: label[for="poisonResistance"] など）を絶対配置 */
+.head-item label,
+.resistance-item label {
+    position: absolute;
+    display: block;
+    margin-bottom: 5px;
+    top: 15px;
+    /* 適宜調整 */
+    left: 3px;
+    /* 適宜調整 */
+    transform: translateY(-50%);
+    font-size: 14px;
+    pointer-events: none;
+    background-color: white;
+    padding: 0 5px;
+    z-index: 1;
+}
+
+button {
+    margin: 10px 0;
+    padding: 6px 12px;
+}
+
+.results {
+    margin-top: 20px;
+}
+
+table,
+th,
+td {
+    border: 1px solid #ccc;
+    border-collapse: collapse;
+    margin-bottom: 20px;
+}
+
+th,
+td {
+    padding: 6px 8px;
+}
+
+
+/* 色のスタイル */
+#color option[value="gold"] {
+    background-color: #e2d06e;
+    color: black;
+}
+
+#color option[value="pink"] {
+    background-color: #ffc0cb;
+    color: black;
+}
+
+#color option[value="black"] {
+    background-color: #454545;
+    color: white;
+}
+
+/* レスポンシブデザイン */
+@media (max-width: 1024px) {
+    .head-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .resistances {
+        grid-template-columns: repeat(4, 1fr);
+        /* 1024px以下では4列 */
+    }
+}
+
+@media (max-width: 768px) {
+    .head-options {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .resistances {
+        grid-template-columns: repeat(4, 1fr);
+        /* 768px以下では3列 */
+    }
+}
+
+@media (max-width: 480px) {
+    .head-options {
+        grid-template-columns: 2fr;
+    }
+
+    .resistances {
+        grid-template-columns: 2fr;
+        /* 480px以下では1列 */
+    }
+}
