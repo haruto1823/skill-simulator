@@ -323,15 +323,15 @@ function searchCombinations() {
     const resultTable = document.createElement('table');
     const headerRow = document.createElement('tr');
     headerRow.innerHTML = `
-        <th>ふく</th>
-        <th>かお</th>
-        <th>くび</th>
-        <th>うで</th>
-        <th>せなか</th>
-        <th>あし</th>
+        <th>服</th>
+        <th>顔</th>
+        <th>首</th>
+        <th>腕</th>
+        <th>背中</th>
+        <th>足</th>
         <th>マヒ</th>
-        <th>ねむり</th>
-        <th>みりょう</th>
+        <th>眠り</th>
+        <th>魅了</th>
         <th>恐怖</th>
     `;
     resultTable.appendChild(headerRow);
@@ -346,38 +346,51 @@ function searchCombinations() {
                     for (const senaka of senakaEquipment) {
                         for (const ashi of ashiEquipment) {
                             // 合計計算
-                            const pTotal = (fuku.paralysis ?? 0)
-                                + (kao.paralysis ?? 0)
-                                + (kubi.paralysis ?? 0)
-                                + (ude.paralysis ?? 0)
-                                + (senaka.paralysis ?? 0)
-                                + (ashi.paralysis ?? 0)
-                                + paralysisBonus;
+                            const pTotal = Math.min(
+                                (fuku.paralysis ?? 0) +
+                                (kao.paralysis ?? 0) +
+                                (kubi.paralysis ?? 0) +
+                                (ude.paralysis ?? 0) +
+                                (senaka.paralysis ?? 0) +
+                                (ashi.paralysis ?? 0) +
+                                paralysisBonus,
+                                9 // 最大9に制限
+                            );
 
-                            const sTotal = (fuku.sleep ?? 0)
-                                + (kao.sleep ?? 0)
-                                + (kubi.sleep ?? 0)
-                                + (ude.sleep ?? 0)
-                                + (senaka.sleep ?? 0)
-                                + (ashi.sleep ?? 0)
-                                + sleepBonus;
+                            const sTotal = Math.min(
+                                (fuku.sleep ?? 0) +
+                                (kao.sleep ?? 0) +
+                                (kubi.sleep ?? 0) +
+                                (ude.sleep ?? 0) +
+                                (senaka.sleep ?? 0) +
+                                (ashi.sleep ?? 0) +
+                                sleepBonus,
+                                9 // 最大9に制限
+                            );
 
-                            const cTotal = (fuku.charm ?? 0)
-                                + (kao.charm ?? 0)
-                                + (kubi.charm ?? 0)
-                                + (ude.charm ?? 0)
-                                + (senaka.charm ?? 0)
-                                + (ashi.charm ?? 0)
-                                + charmBonus;
+                            const cTotal = Math.min(
+                                (fuku.charm ?? 0) +
+                                (kao.charm ?? 0) +
+                                (kubi.charm ?? 0) +
+                                (ude.charm ?? 0) +
+                                (senaka.charm ?? 0) +
+                                (ashi.charm ?? 0) +
+                                charmBonus,
+                                9 // 最大9に制限
+                            );
 
-                            const fTotal = (fuku.fear ?? 0)
-                                + (kao.fear ?? 0)
-                                + (kubi.fear ?? 0)
-                                + (ude.fear ?? 0)
-                                + (senaka.fear ?? 0)
-                                + (ashi.fear ?? 0)
-                                + fearBonus;
+                            const fTotal = Math.min(
+                                (fuku.fear ?? 0) +
+                                (kao.fear ?? 0) +
+                                (kubi.fear ?? 0) +
+                                (ude.fear ?? 0) +
+                                (senaka.fear ?? 0) +
+                                (ashi.fear ?? 0) +
+                                fearBonus,
+                                9 // 最大9に制限
+                            );
 
+                            // 要求値を満たすか判定
                             if (pTotal >= paralysisReq && sTotal >= sleepReq && cTotal >= charmReq && fTotal >= fearReq) {
                                 matchCount++;
                                 const row = document.createElement('tr');
@@ -394,6 +407,7 @@ function searchCombinations() {
                                     <td>${fTotal}</td>
                                 `;
                                 resultTable.appendChild(row);
+
                                 if (matchCount >= maxResults) break outermost;
                             }
                         }
@@ -402,5 +416,10 @@ function searchCombinations() {
             }
         }
     }
-    resultsDiv.appendChild(matchCount === 0 ? "該当なし" : resultTable);
+
+    if (matchCount === 0) {
+        resultsDiv.textContent = "該当する装備組み合わせはありません。";
+    } else {
+        resultsDiv.appendChild(resultTable);
+    }
 }

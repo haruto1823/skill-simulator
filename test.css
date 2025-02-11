@@ -1,34 +1,53 @@
 body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    min-height: 100vh;
+    /* 画面の高さいっぱいに */
     font-family: Arial, sans-serif;
     font-size: 14px;
-    margin: 20px;
-    max-width: 1200px;
-    padding: 0 20px;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+    /* 背景色を薄いグレーに */
 }
 
+/* メインコンテンツを中央に配置するコンテナ */
+.container {
+    width: 90%;
+    max-width: 940px;
+    /* 最大幅を制限 */
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* 見出しのデザイン */
 h1,
 h2 {
+    text-align: center;
     color: #333;
     background-color: rgb(222, 222, 222);
+    padding: 10px;
+    border-radius: 5px;
 }
 
-
 select {
-    height: 50px;
-    padding: 25px 5px 5px 5px;
+    height: 48px;
+    padding: 24px 4px 4px 4px;
     width: 100%;
     box-sizing: border-box;
     position: relative;
-    /* ラベルの下に表示 */
     z-index: 0;
-    /* ラベルより下に表示 */
 }
 
 .head-options {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 10px;
-    margin: 20px 0;
+
 }
 
 /* 状態異常耐性セクション（.resistances）を6列で表示する例 */
@@ -73,20 +92,42 @@ button {
 }
 
 .results {
+    display: flex;
+    justify-content: center;
     margin-top: 20px;
 }
 
 table,
 th,
 td {
-    border: 1px solid #ccc;
+    font-size: 85%;
+    border: 1px solid #b8b8b8;
     border-collapse: collapse;
     margin-bottom: 20px;
 }
 
-th,
+table {
+    border-collapse: collapse;
+    width: 100%;
+    max-width: 920px;
+    margin: auto;
+    background-color: white;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* テーブルのヘッダー */
+th {
+    background-color: #ddd;
+    padding: 10px;
+    text-align: center;
+}
+
+/* テーブルのセル */
 td {
-    padding: 6px 8px;
+    padding: 8px;
+    text-align: center;
+    border: 1px solid #b8b8b8;
 }
 
 
@@ -116,6 +157,11 @@ td {
         grid-template-columns: repeat(4, 1fr);
         /* 1024px以下では4列 */
     }
+
+    table {
+        max-width: 90%;
+        /* 画面幅に合わせて調整 */
+    }
 }
 
 @media (max-width: 768px) {
@@ -127,6 +173,10 @@ td {
         grid-template-columns: repeat(4, 1fr);
         /* 768px以下では3列 */
     }
+
+    table {
+        max-width: 100%;
+    }
 }
 
 @media (max-width: 480px) {
@@ -137,5 +187,10 @@ td {
     .resistances {
         grid-template-columns: 2fr;
         /* 480px以下では1列 */
+    }
+
+    table {
+        font-size: 12px;
+        /* モバイル時にフォントサイズを縮小 */
     }
 }
