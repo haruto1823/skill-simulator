@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width">
+    <title>状態異常耐性選択</title>
+    <link rel="stylesheet" href="test.css">
+</head>
+
+<body>
+    <div class="container">
+        <h1>スキルシミュレーター</h1>
+
+        <h2>色・柄・頭の形</h2>
+        <div class="head-options">
+            <div class="head-item">
+                <label for="color">色</label>
+                <select id="color">
+                    <option value="">--</option>
+                    <option value="gold">金 (マヒ耐性+1)</option>
+                    <option value="pink">桃 (魅了耐性+1)</option>
+                    <option value="black">黒 (眠り耐性+1)</option>
+                </select>
+            </div>
+            <div class="head-item mixed-color-section" id="mixedColorContainer">
+                <label for="mixedColor">混色</label>
+                <select id="mixedColor">
+                    <option value="">--</option>
+                </select>
+            </div>
+            <div class="head-item">
+                <label for="pattern">柄</label>
+                <select id="pattern">
+                    <option value="">--</option>
+                    <option value="flower">花柄 (対応する状態異常耐性+1)</option>
+                </select>
+            </div>
+            <div class="head-item">
+                <label for="headShape">頭の形</label>
+                <select id="headShape" onchange="updateResistances()">
+                    <option value="">--</option>
+                    <option value="sun">太陽 (全状態異常耐性+3)</option>
+                </select>
+            </div>
+        </div>
+
+        <h2>状態異常耐性</h2>
+        <div class="resistances">
+            <div class="resistance-item">
+                <label for="paralysisReq">マヒ耐性</label>
+                <select id="paralysisReq">
+                    <option value="">--</option>
+                    <option value="1">+1</option>
+                    <option value="2">+2</option>
+                    <option value="3">+3</option>
+                    <option value="4">+4</option>
+                    <option value="5">+5</option>
+                    <option value="6">+6</option>
+                    <option value="7">+7</option>
+                    <option value="8">+8</option>
+                    <option value="9">+9</option>
+                </select>
+            </div>
+            <div class="resistance-item">
+                <label for="sleepReq">眠り耐性</label>
+                <select id="sleepReq">
+                    <option value="">--</option>
+                    <option value="1">+1</option>
+                    <option value="2">+2</option>
+                    <option value="3">+3</option>
+                    <option value="4">+4</option>
+                    <option value="5">+5</option>
+                    <option value="6">+6</option>
+                    <option value="7">+7</option>
+                    <option value="8">+8</option>
+                    <option value="9">+9</option>
+                </select>
+            </div>
+            <div class="resistance-item">
+                <label for="charmReq">魅了耐性</label>
+                <select id="charmReq">
+                    <option value="">--</option>
+                    <option value="1">+1</option>
+                    <option value="2">+2</option>
+                    <option value="3">+3</option>
+                    <option value="4">+4</option>
+                    <option value="5">+5</option>
+                    <option value="6">+6</option>
+                    <option value="7">+7</option>
+                    <option value="8">+8</option>
+                    <option value="9">+9</option>
+                </select>
+            </div>
+            <div class="resistance-item">
+                <label for="fearReq">恐怖耐性</label>
+                <select id="fearReq">
+                    <option value="">--</option>
+                    <option value="1">+1</option>
+                    <option value="2">+2</option>
+                    <option value="3">+3</option>
+                    <option value="4">+4</option>
+                    <option value="5">+5</option>
+                    <option value="6">+6</option>
+                    <option value="7">+7</option>
+                    <option value="8">+8</option>
+                    <option value="9">+9</option>
+                </select>
+            </div>
+        </div>
+
+
+        <div class="search-section">
+            <button id="searchBtn">検索</button>
+            <label for="maxResults">表示件数上限:</label>
+            <input type="number" id="maxResults" min="1" max="10000" value="50">
+        </div>
+
+        <div class="results" id="results"></div>
+    </div>
+
+    <script src="test.js"></script>
+</body>
+
+</html>
