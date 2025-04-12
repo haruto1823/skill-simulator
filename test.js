@@ -72,7 +72,7 @@ const udeEquipment = [
     { name: "なし", paralysis: 0, sleep: 0, charm: 0, fear: 0 },
     { name: "きぞくのそで", charm: 7 },
     { name: "そぎたけ", charm: 2 },
-    // ...
+    { name: "めいし", fear: 1 }
 ];
 
 const senakaEquipment = [
@@ -94,7 +94,6 @@ const ashiEquipment = [
     { name: "チャイナロリシューズ", charm: 3 },
     { name: "わらのくつ", charm: 2 },
     { name: "ぶしょうのくつ", fear: 3 }
-    // ...
 ];
 
 document.addEventListener('DOMContentLoaded', function () {
